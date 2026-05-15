@@ -8,7 +8,7 @@ The primary goal is to:
 - Communicate credibility, expertise, and modern design capability
 - Guide users smoothly toward contacting or booking a consultation
 
-## 2. Target Users (Design-Relevant Summary)
+## 2. Target Users 
 **Focus on:**
 - Startup founders
 - Small business owners
