@@ -1,4 +1,4 @@
-# Optech – Landing Page UI/UX Design
+# Optech –  Design Brief
 
 ## 1. Objective
 Design a high-converting landing page for Optech Labs, a web development and UI/UX agency.
