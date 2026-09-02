@@ -1,26 +1,569 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Optech Labs — Design System
+   Theming is driven by semantic CSS custom properties on :root, swapped by the
+   [data-theme] attribute. Tailwind utilities reference them via `@theme inline`
+   so every utility follows the active theme with zero `dark:` duplication.
+--------------------------------------------------------------------------- */
+
+@custom-variant dark ([data-theme="dark"] &);
+@custom-variant light ([data-theme="light"] &);
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #08090a;
+  --canvas-deep: #050506;
+  --surface: #0d0f11;
+  --surface-2: #131619;
+  --surface-3: #1a1e22;
+
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.17);
+  --line-faint: rgb(255 255 255 / 0.05);
+
+  --ink: #f4f5f6;
+  --ink-2: #b0b5bb;
+  /* Tertiary ink is used for small mono labels, so it must still clear 4.5:1
+     against the darkest surface it ever sits on (--canvas-deep). */
+  --ink-3: #8b9198;
+
+  --accent: #cdff47;
+  --accent-hover: #dbff74;
+  --accent-ink: #0a0b0d;
+  /* Text-safe accent — the fill colour is too light-on-light in light mode, so
+     accent *text* uses its own token that both themes can satisfy. */
+  --accent-text: #cdff47;
+  --accent-soft: rgb(205 255 71 / 0.12);
+  --accent-glow: rgb(205 255 71 / 0.28);
+
+  --grid-line: rgb(255 255 255 / 0.032);
+  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset,
+    0 20px 50px -24px rgb(0 0 0 / 0.9);
+  --shadow-float: 0 40px 90px -40px rgb(0 0 0 / 0.95);
+  --frame-tint: rgb(255 255 255 / 0.03);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --canvas: #f7f7f5;
+  --canvas-deep: #eeeeea;
+  --surface: #ffffff;
+  --surface-2: #f2f2ef;
+  --surface-3: #e9e9e4;
+
+  --line: rgb(10 11 13 / 0.11);
+  --line-strong: rgb(10 11 13 / 0.24);
+  --line-faint: rgb(10 11 13 / 0.06);
+
+  --ink: #0a0b0d;
+  --ink-2: #4b4f55;
+  --ink-3: #63686e;
+
+  --accent: #bdf125;
+  --accent-hover: #cbf94f;
+  --accent-ink: #0a0b0d;
+  /* The lime fill is unreadable as text on a light canvas; accent text in this
+     theme uses a deep olive that keeps the brand hue and clears AA. */
+  --accent-text: #46590a;
+  --accent-soft: rgb(140 190 10 / 0.14);
+  --accent-glow: rgb(150 200 20 / 0.35);
+
+  --grid-line: rgb(10 11 13 / 0.045);
+  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.9) inset,
+    0 18px 40px -28px rgb(10 11 13 / 0.4);
+  --shadow-float: 0 40px 80px -40px rgb(10 11 13 / 0.35);
+  --frame-tint: rgb(10 11 13 / 0.02);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: var(--canvas);
+  --color-canvas-deep: var(--canvas-deep);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-faint: var(--line-faint);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+
+  --color-accent: var(--accent-text);
+  --color-accent-fill: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-marquee-slow: marquee 70s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--ink-3);
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-color: var(--line-strong) transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Layout primitives
+--------------------------------------------------------------------------- */
+
+@utility shell {
+  width: 100%;
+  max-width: 84rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* The blueprint canvas: hairline engineering grid, faded at the edges. */
+@utility blueprint {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: linear-gradient(
+        to right,
+        var(--grid-line) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse 90% 70% at 50% 0%,
+      #000 20%,
+      transparent 78%
+    );
+    pointer-events: none;
+  }
+}
+
+/* Vertical rules that frame the content column on large screens. */
+@utility rules {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-faint);
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+  }
+  &::after {
+    right: 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Typographic helpers
+--------------------------------------------------------------------------- */
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+@utility numeral {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+--------------------------------------------------------------------------- */
+
+@utility btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    background-color 0.22s var(--ease-out-expo),
+    color 0.22s var(--ease-out-expo),
+    border-color 0.22s var(--ease-out-expo),
+    transform 0.22s var(--ease-out-expo),
+    box-shadow 0.22s var(--ease-out-expo);
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &[disabled] {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+
+@utility btn-accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+
+  &:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 8px 30px -8px var(--accent-glow);
+  }
+}
+
+@utility btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+
+  &:hover {
+    background: var(--surface-2);
+    border-color: var(--ink-3);
+  }
+}
+
+@utility btn-solid {
+  background: var(--ink);
+  color: var(--canvas);
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Cards + corner tick marks (the "engineered" signature detail)
+--------------------------------------------------------------------------- */
+
+@utility panel {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+/* Crosshair ticks at each corner — drawn with a single background layer. */
+@utility ticked {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid var(--line-strong);
+    border-left: 1px solid var(--line-strong);
+  }
+
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 1px solid var(--line-strong);
+    border-right: 1px solid var(--line-strong);
+  }
+}
+
+/* Pointer-tracked spotlight, coordinates supplied by the enhancements script. */
+@utility spotlight {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-expo);
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 50%),
+      var(--accent-soft),
+      transparent 62%
+    );
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll reveal — opt-in, and only once JS has confirmed it can undo itself.
+--------------------------------------------------------------------------- */
+
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-out-expo),
+    transform 0.75s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Marquee
+--------------------------------------------------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Native accordion (details/summary) with smooth height
+--------------------------------------------------------------------------- */
+
+@utility accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s var(--ease-out-expo);
+
+  & > div {
+    overflow: hidden;
+  }
+}
+
+details[open] .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* `details` needs to stay open while the closing animation runs; we keep it
+   simple and animate only the opening direction, which browsers handle well. */
+details[open] > summary .accordion-icon {
+  transform: rotate(45deg);
+}
+
+/* ---------------------------------------------------------------------------
+   Misc
+--------------------------------------------------------------------------- */
+
+@utility hairline-x {
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--line-strong),
+    transparent
+  );
+  height: 1px;
+}
+
+@utility text-gradient-ink {
+  background: linear-gradient(
+    170deg,
+    var(--ink) 20%,
+    color-mix(in oklab, var(--ink) 55%, var(--canvas)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.82);
+  }
+}
+
+@utility pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-rise {
+  animation: rise 0.9s var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
