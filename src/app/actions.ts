@@ -103,7 +103,7 @@ export async function submitLead(
       status: "error",
       message: "",
       errors: {
-        form: "Something went wrong on our end. Please email hello@optechlabs.com and we'll pick it up straight away.",
+        form: "Something went wrong on our end. Please email opt3ch@outlook.com and we'll pick it up straight away.",
       },
       values,
     };

@@ -36,7 +36,7 @@ function getSnapshot(): Theme {
 
 /** Server render assumes the documented default. */
 function getServerSnapshot(): Theme {
-  return "dark";
+  return "light";
 }
 
 export function ThemeToggle({ className }: { className?: string }) {
@@ -61,7 +61,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <button
       type="button"
       onClick={toggle}
-      className={`group relative grid size-11 place-items-center rounded-sm border border-line text-ink-2 transition-colors hover:border-line-strong hover:text-ink sm:size-9 ${className ?? ""}`}
+      className={`group relative grid size-11 place-items-center rounded-full border border-line text-ink-2 transition-colors hover:border-line-strong hover:text-ink sm:size-9 ${className ?? ""}`}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
       title="Switch theme"
     >

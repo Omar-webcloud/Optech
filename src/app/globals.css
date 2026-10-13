@@ -30,14 +30,12 @@
      against the darkest surface it ever sits on (--canvas-deep). */
   --ink-3: #8b9198;
 
-  --accent: #cdff47;
-  --accent-hover: #dbff74;
+  --accent: #d4d5d6;
+  --accent-hover: #f1f1f1;
   --accent-ink: #0a0b0d;
-  /* Text-safe accent — the fill colour is too light-on-light in light mode, so
-     accent *text* uses its own token that both themes can satisfy. */
-  --accent-text: #cdff47;
-  --accent-soft: rgb(205 255 71 / 0.12);
-  --accent-glow: rgb(205 255 71 / 0.28);
+  --accent-text: #d4d5d6;
+  --accent-soft: rgb(255 255 255 / 0.1);
+  --accent-glow: rgb(255 255 255 / 0.2);
 
   --grid-line: rgb(255 255 255 / 0.032);
   --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset,
@@ -63,14 +61,12 @@
   --ink-2: #4b4f55;
   --ink-3: #63686e;
 
-  --accent: #bdf125;
-  --accent-hover: #cbf94f;
-  --accent-ink: #0a0b0d;
-  /* The lime fill is unreadable as text on a light canvas; accent text in this
-     theme uses a deep olive that keeps the brand hue and clears AA. */
-  --accent-text: #46590a;
-  --accent-soft: rgb(140 190 10 / 0.14);
-  --accent-glow: rgb(150 200 20 / 0.35);
+  --accent: #171717;
+  --accent-hover: #333333;
+  --accent-ink: #f7f7f5;
+  --accent-text: #171717;
+  --accent-soft: rgb(10 11 13 / 0.08);
+  --accent-glow: rgb(10 11 13 / 0.2);
 
   --grid-line: rgb(10 11 13 / 0.045);
   --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.9) inset,
@@ -284,7 +280,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: var(--radius-sm);
+  border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: -0.01em;

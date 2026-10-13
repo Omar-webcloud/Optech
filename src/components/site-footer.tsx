@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { nav, site, services } from "@/content/site";
-import { Logo, ArrowRight } from "@/components/icons";
+import { ArrowRight } from "@/components/icons";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -11,10 +11,9 @@ export function SiteFooter() {
         <div className="grid gap-12 py-16 md:grid-cols-12 md:py-20">
           {/* Identity */}
           <div className="flex flex-col gap-5 md:col-span-5 lg:col-span-4">
-            <Link href="/" className="flex min-h-11 w-fit items-center gap-2.5">
-              <Logo className="size-7 text-ink" />
-              <span className="display text-[1.0625rem] text-ink">
-                Optech<span className="text-ink-3">Labs</span>
+            <Link href="/" className="flex min-h-11 w-fit items-center">
+              <span className="display text-[1.0625rem] tracking-[0.18em] text-ink">
+                OPTECH
               </span>
             </Link>
 

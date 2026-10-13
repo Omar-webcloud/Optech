@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav, site } from "@/content/site";
-import { Logo, ArrowRight } from "@/components/icons";
+import { nav } from "@/content/site";
+import { ArrowRight } from "@/components/icons";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
@@ -43,22 +43,21 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* Backdrop only solidifies once the page has scrolled. */}
+      {/* A glass backdrop keeps navigation readable over the moving hero video. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 border-b border-transparent bg-canvas/0 backdrop-blur-0 transition-all duration-300 in-data-[scrolled=true]:border-line in-data-[scrolled=true]:bg-canvas/80 in-data-[scrolled=true]:backdrop-blur-xl"
+        className="absolute inset-0 border-b border-line bg-canvas/80 backdrop-blur-xl"
       />
 
       <div className="shell relative">
         <div className="flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
           <Link
             href="/"
-            className="group flex min-h-11 items-center gap-2.5"
-            aria-label={`${site.name} — home`}
+            className="group flex min-h-11 items-center"
+            aria-label="OPTECH — home"
           >
-            <Logo className="size-7 shrink-0 text-ink transition-transform duration-500 group-hover:rotate-90" />
-            <span className="display text-[1.0625rem] tracking-tight text-ink">
-              Optech<span className="text-ink-3">Labs</span>
+            <span className="display text-[1.0625rem] tracking-[0.18em] text-ink">
+              OPTECH
             </span>
           </Link>
 
@@ -70,7 +69,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-sm px-3 py-2 text-[0.8125rem] font-medium text-ink-2 transition-colors hover:text-ink"
+                className="rounded-sm px-3 py-2 text-[0.8125rem] font-medium text-ink transition-colors hover:text-ink-2"
               >
                 {item.label}
               </Link>
@@ -90,7 +89,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setDrawer(!isOpen)}
-              className="grid size-11 place-items-center rounded-sm border border-line text-ink lg:hidden"
+              className="grid size-11 place-items-center rounded-full border border-line text-ink lg:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
               aria-controls="mobile-nav"

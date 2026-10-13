@@ -67,10 +67,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#08090a" },
+    { media: "(prefers-color-scheme: dark)", color: "#f7f7f5" },
     { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
   ],
-  colorScheme: "dark light",
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -85,11 +85,10 @@ const bootScript = `
 (function () {
   try {
     var stored = localStorage.getItem('optech-theme');
-    var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    var theme = stored || (prefersLight ? 'light' : 'dark');
+    var theme = stored || 'light';
     document.documentElement.setAttribute('data-theme', theme);
   } catch (e) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute('data-theme', 'light');
   }
   document.documentElement.classList.add('js');
 })();
@@ -99,7 +98,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
       className={`${GeistSans.variable} ${GeistMono.variable} ${bricolage.variable} h-full antialiased`}
     >

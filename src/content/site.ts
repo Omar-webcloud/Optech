@@ -11,7 +11,7 @@ export const site = {
   tagline: "Web development & product design studio",
   domain: "optechlabs.com",
   url: "https://optechlabs.com",
-  email: "hello@optechlabs.com",
+  email: "opt3ch@outlook.com",
   phone: "+1 (415) 555-0142",
   calendly: "#contact",
   founded: 2017,
@@ -37,18 +37,28 @@ export const nav = [
 /* -------------------------------------------------------------------------- */
 
 export const hero = {
-  eyebrow: "Web development & UI/UX, engineered for outcomes",
-  headline: ["Ship the product", "your roadmap keeps", "postponing."],
-  headlineAccentIndex: 2,
-  sub: "Optech Labs is a senior product studio for founders and SaaS teams. We design and build revenue-critical web products — and hand them over in weeks, not quarters.",
-  primaryCta: { label: "Book a 20-min call", href: "#contact" },
-  secondaryCta: { label: "See the work", href: "/work" },
+  intro: [
+    "Hello, we're OPTECH,",
+    "an independent design & development agency",
+  ],
+  typewriterText:
+    "We turn ambitious ideas into digital experiences people remember. What should we create together?",
+  actions: [
+    { label: "Start a project", href: "#contact", variant: "solid" },
+    { label: "Explore our work", href: "/work", variant: "solid" },
+    { label: "See what we do", href: "#services", variant: "solid" },
+    { label: "Meet the studio", href: "#why", variant: "solid" },
+    {
+      label: "Say hello: opt3ch@outlook.com",
+      href: "mailto:opt3ch@outlook.com",
+      variant: "outline",
+    },
+  ],
   reassurance: [
     "Fixed scope, fixed price",
     "First build in 14 days",
     "Senior engineers only",
   ],
-  // Live "telemetry" strip rendered under the hero visual.
   telemetry: [
     { label: "Avg. Lighthouse", value: "98" },
     { label: "Avg. time to launch", value: "6 wks" },
