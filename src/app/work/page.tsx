@@ -50,11 +50,6 @@ export default function WorkIndex() {
                 Work that had to
                 <br className="hidden sm:block" /> earn its budget.
               </h1>
-              <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-ink-2">
-                Every engagement below started with a measurable problem. Each
-                write-up covers what was actually wrong, the decision that
-                changed it, and what happened afterwards.
-              </p>
             </div>
 
             <dl className="flex shrink-0 gap-8 border-t border-line pt-6 lg:border-none lg:pt-0">

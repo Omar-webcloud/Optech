@@ -30,11 +30,6 @@ export function FinalCta() {
               <br className="hidden sm:block" /> a real answer.
             </h2>
 
-            <p className="mt-5 max-w-lg text-[1.0625rem] leading-relaxed opacity-80">
-              Bring the problem, not a spec. We will tell you what it takes,
-              what it costs, and whether we are the right team for it — on the
-              call, not a week later.
-            </p>
           </div>
 
           <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">

@@ -18,11 +18,6 @@ export function Faq() {
                 title="The things people ask before signing."
               />
 
-              <p className="mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-ink-2">
-                Straight answers, including the ones about money. If something
-                is missing, ask us directly — we answer in a day.
-              </p>
-
               <Link
                 href="#contact"
                 className="btn btn-ghost group mt-6 h-10 px-4"

@@ -17,7 +17,6 @@ export function Services() {
               <br className="hidden sm:block" /> one accountable team.
             </>
           }
-          lede="No handoffs between agencies, no translation loss between design and engineering. The people who scope the work are the people who ship it."
         />
 
         {/* Bordered grid — cells share hairlines instead of floating as cards. */}

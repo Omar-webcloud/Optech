@@ -65,12 +65,6 @@ export function Contact() {
               <br className="hidden sm:block" /> are trying to ship.
             </h2>
 
-            <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-ink-2">
-              One form, one reply, no sales sequence. You will hear back from a
-              senior engineer or designer within one business day — with a
-              genuine opinion on your project, not a brochure.
-            </p>
-
             <ul className="mt-8 flex flex-col gap-3.5 border-t border-line pt-8">
               {[
                 "A reply within one business day",

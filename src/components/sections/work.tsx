@@ -116,7 +116,6 @@ export function Work() {
               <br className="hidden sm:block" /> portfolio wall.
             </>
           }
-          lede="Four engagements, the problem each one started with, and the numbers that moved. Every project links to a full write-up."
           action={
             <Link
               href="/work"

@@ -436,6 +436,15 @@ html.js [data-reveal].is-visible {
   }
 }
 
+@utility testimonials-track {
+  animation: marquee 48s linear infinite;
+}
+
+.testimonials-viewport:hover .testimonials-track,
+.testimonials-viewport:focus-within .testimonials-track {
+  animation-play-state: paused;
+}
+
 @utility marquee-mask {
   mask-image: linear-gradient(
     to right,
@@ -561,5 +570,22 @@ details[open] > summary .accordion-icon {
   html.js [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .testimonials-track {
+    animation: none !important;
+  }
+
+  .testimonials-duplicate {
+    display: none;
+  }
+
+  .testimonials-viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .testimonials-viewport::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -16,7 +16,6 @@ export function Process() {
               <br className="hidden sm:block" /> hold us to.
             </>
           }
-          lede="Every phase has a dated deliverable and a demo. If a week passes without something you can open in a browser, something has gone wrong."
         />
 
         {/* Desktop: horizontal stepper. Mobile: vertical timeline. */}

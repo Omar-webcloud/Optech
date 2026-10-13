@@ -15,7 +15,6 @@ export function Why() {
               <br className="hidden sm:block" /> written down as terms.
             </>
           }
-          lede="Every studio claims quality and speed. These are the specific commitments we put in the contract — and the reason clients come back."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">

@@ -2,15 +2,12 @@ import { cn, pad } from "@/lib/utils";
 import type { ReactNode } from "react";
 
 /**
- * Spec-sheet section header: a numbered monospace label, a display heading and
- * an optional lede. The numbering is what makes the page read as an engineering
- * document rather than a generic marketing stack.
+ * Spec-sheet section header: a numbered monospace label and a display heading.
  */
 export function SectionHeader({
   index,
   label,
   title,
-  lede,
   align = "left",
   className,
   action,
@@ -18,7 +15,6 @@ export function SectionHeader({
   index: number;
   label: string;
   title: ReactNode;
-  lede?: string;
   align?: "left" | "center";
   className?: string;
   action?: ReactNode;
@@ -50,10 +46,7 @@ export function SectionHeader({
       </div>
 
       <div
-        className={cn(
-          "flex w-full flex-col gap-5 lg:flex-row lg:items-end lg:justify-between",
-          centered && "lg:flex-col lg:items-center",
-        )}
+        className="flex w-full flex-col gap-5"
       >
         <h2
           className={cn(
@@ -63,17 +56,6 @@ export function SectionHeader({
         >
           {title}
         </h2>
-
-        {lede ? (
-          <p
-            className={cn(
-              "max-w-md text-[0.9375rem] leading-relaxed text-ink-2",
-              centered && "max-w-2xl text-center text-base",
-            )}
-          >
-            {lede}
-          </p>
-        ) : null}
 
         {action}
       </div>
