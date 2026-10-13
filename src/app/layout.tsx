@@ -25,50 +25,68 @@ const bricolage = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
+    default: "OPTECH | Web Design & Development Studio",
+    template: "%s | OPTECH",
   },
   description:
-    "Optech Labs is a senior web development and UI/UX studio for founders and SaaS teams. Fixed scope, fixed price, median launch in six weeks.",
+    "OPTECH is an independent web design and development studio creating memorable digital experiences, custom websites, and products for ambitious brands.",
   keywords: [
-    "web development agency",
-    "UI UX design studio",
-    "Next.js development",
-    "product design agency",
-    "SaaS web design",
-    "conversion optimisation",
+    "web design studio",
+    "web development studio",
+    "creative agency",
+    "digital experiences",
+    "website design and development",
+    "product design",
+    "UI UX design",
   ],
+  category: "technology",
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   applicationName: site.name,
+  referrer: "strict-origin-when-cross-origin",
   alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/optech-emblem-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [
+      { url: "/optech-emblem-180.png", type: "image/png", sizes: "180x180" },
+    ],
+  },
   openGraph: {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: "OPTECH | Web Design & Development Studio",
     description:
-      "A senior product studio for founders and SaaS teams. We design and build revenue-critical web products in weeks, not quarters.",
+      "An independent design and development studio creating memorable digital experiences, custom websites, and products for ambitious brands.",
     locale: "en_US",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "OPTECH — independent web design and development studio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: "OPTECH | Web Design & Development Studio",
     description:
-      "A senior product studio for founders and SaaS teams. Fixed scope, fixed price, median launch in six weeks.",
+      "An independent design and development studio creating memorable digital experiences for ambitious brands.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  category: "technology",
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#f7f7f5" },
-    { media: "(prefers-color-scheme: light)", color: "#f7f7f5" },
+    { color: "#f7f7f5" },
   ],
   colorScheme: "light",
   width: "device-width",

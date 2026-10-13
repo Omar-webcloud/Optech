@@ -90,12 +90,6 @@ export function SiteFooter() {
             >
               {site.email}
             </a>
-            <a
-              href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
-              className="inline-flex min-h-11 items-center text-sm text-ink-2 transition-colors hover:text-ink lg:min-h-0"
-            >
-              {site.phone}
-            </a>
             <Link
               href="/#contact"
               className="btn btn-ghost mt-1 h-10 w-fit px-4"

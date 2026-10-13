@@ -1,5 +1,19 @@
 # Optech –  Design Brief
 
+## Contact form email delivery
+
+Contact form submissions are sent server-side through Resend to
+`opt3ch@outlook.com`. Configure these environment variables in Vercel for each
+deployment environment, and locally in `.env.local`:
+
+- `RESEND_API_KEY`: a Resend API key with permission to send email.
+- `RESEND_FROM_EMAIL`: a sender address on a domain verified in Resend, such as
+  `OPTECH <contact@your-verified-domain.com>`.
+
+The form only confirms success after Resend accepts the email. If email delivery
+is not configured or the provider rejects the request, the form shows an error
+and directs the visitor to email `opt3ch@outlook.com` directly.
+
 ## 1. Objective
 Design a high-converting landing page for Optech Labs, a web development and UI/UX agency.
 

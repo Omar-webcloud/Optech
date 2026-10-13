@@ -12,7 +12,26 @@ import { Contact } from "@/components/sections/contact";
 import { StructuredData } from "@/components/structured-data";
 
 export const metadata: Metadata = {
+  title: "OPTECH | Web Design & Development Studio",
+  description:
+    "OPTECH is an independent creative studio turning ambitious ideas into memorable digital experiences through web design, development, and product design.",
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "OPTECH",
+    title: "OPTECH | Web Design & Development Studio",
+    description:
+      "An independent creative studio turning ambitious ideas into memorable digital experiences through thoughtful design and development.",
+    url: "/",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "OPTECH — independent web design and development studio",
+      },
+    ],
+  },
 };
 
 /**

@@ -1,6 +1,7 @@
 "use server";
 
 import { validateLead, type LeadState } from "@/lib/leads";
+import { site } from "@/content/site";
 
 /**
  * Very small in-memory rate limiter.
@@ -76,34 +77,63 @@ export async function submitLead(
     };
   }
 
-  try {
-    // Delivery. A webhook keeps this deployment-agnostic — point
-    // LEAD_WEBHOOK_URL at Slack, Zapier, a CRM, or your own endpoint.
-    const webhook = process.env.LEAD_WEBHOOK_URL;
+  const apiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
 
-    if (webhook) {
-      const response = await fetch(webhook, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(data),
-        signal: AbortSignal.timeout(8000),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Webhook responded ${response.status}`);
-      }
-    } else {
-      // No webhook configured (e.g. local dev): log so the lead is never lost.
-      console.info("[optech:lead]", JSON.stringify(data));
-    }
-  } catch (error) {
-    console.error("[optech:lead] delivery failed", error);
+  if (!apiKey || !fromEmail) {
+    console.error(
+      "[optech:lead] email delivery is not configured; set RESEND_API_KEY and RESEND_FROM_EMAIL",
+    );
 
     return {
       status: "error",
       message: "",
       errors: {
-        form: "Something went wrong on our end. Please email opt3ch@outlook.com and we'll pick it up straight away.",
+        form: `We couldn't send your message right now. Please email ${site.email} directly.`,
+      },
+      values,
+    };
+  }
+
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${apiKey}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [site.email],
+        reply_to: data.email,
+        subject: "New contact form submission — OPTECH",
+        text: [
+          `Name: ${data.name}`,
+          `Email: ${data.email}`,
+          `Company: ${data.company || "Not provided"}`,
+          `Project type: ${data.projectType || "Not provided"}`,
+          `Budget: ${data.budget || "Not provided"}`,
+          "",
+          "Message:",
+          data.message,
+          "",
+          `Submitted at: ${data.submittedAt}`,
+        ].join("\n"),
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Resend responded ${response.status}`);
+    }
+  } catch (error) {
+    console.error("[optech:lead] email delivery failed", error);
+
+    return {
+      status: "error",
+      message: "",
+      errors: {
+        form: `We couldn't send your message right now. Please email ${site.email} directly.`,
       },
       values,
     };

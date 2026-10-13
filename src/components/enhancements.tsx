@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Progressive enhancement layer, mounted once at the root.
@@ -15,6 +16,8 @@ import { useEffect } from "react";
  *  3. Scroll-progress custom property for the header progress bar.
  */
 export function Enhancements() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -90,7 +93,7 @@ export function Enhancements() {
       window.removeEventListener("scroll", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

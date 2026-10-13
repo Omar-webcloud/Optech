@@ -7,20 +7,16 @@
  */
 
 export const site = {
-  name: "Optech Labs",
-  tagline: "Web development & product design studio",
-  domain: "optechlabs.com",
-  url: "https://optechlabs.com",
+  name: "OPTECH",
+  tagline: "Web design & development studio",
+  domain: "optech.vercel.app",
+  url: "https://optech.vercel.app",
   email: "opt3ch@outlook.com",
-  phone: "+1 (415) 555-0142",
   calendly: "#contact",
   founded: 2017,
   locations: ["San Francisco", "Lisbon", "Singapore"],
   social: [
-    { label: "X", href: "https://x.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "GitHub", href: "https://github.com" },
-    { label: "Dribbble", href: "https://dribbble.com" },
+    { label: "Instagram", href: "https://www.instagram.com/opt3ch/" },
   ],
 } as const;
 
